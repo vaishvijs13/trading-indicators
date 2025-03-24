@@ -2,14 +2,7 @@ import pandas as pd
 import numpy as np
 
 class TradingIndicators:
-    @staticmethod
     def calculate_obv(data: pd.DataFrame) -> pd.Series:
-        """
-        Calculate On Balance Volume.
-
-        :param data: DataFrame with 'Close' and 'Volume' columns.
-        :return: OBV as a pandas series.
-        """
         obv = [0]
         for i in range(1, len(data)):
             if data['Close'].iloc[i] > data['Close'].iloc[i - 1]:
@@ -21,13 +14,7 @@ class TradingIndicators:
         
         return pd.Series(obv, index=data.index)
     
-    @staticmethod
     def calculate_adx(data: pd.DataFrame, period: int = 14) -> pd.Series:
-        """
-        Calculate Average Directional Index.
-        :param data: DataFrame with 'High', 'Low', and 'Close' columns.
-        :return: ADX values as a pandas series.
-        """
         high = data['High']
         low = data['Low']
         close = data['Close']
